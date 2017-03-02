@@ -2,16 +2,18 @@ import Foundation
 import Kitura
 import Kanna
 import HeliumLogger
+import KituraMustache
 
 HeliumLogger.use()
 
 // Create a new router
 let router = Router()
 
+router.add(templateEngine: MustacheTemplateEngine())
+
 // Handle HTTP GET requests to /
 router.get("/") {
     request, response, next in
-    
     
     // ブログトップページを取ってくる
     let url = URL(string: "http://lineblog.me/non_official")!
@@ -31,7 +33,7 @@ router.get("/") {
     // 最新のEntryから順番にアクセスして、「前の記事」があれば遡る、「前の記事」がなくなったら終了する
     var url2 = URL(string: latestEntryUrl)!
 
-    var imageUrls: [String] = []
+    var context: [String: [Any] ] = [ "images": [] ]
     
     while(true) {
         let data2 = try Data(contentsOf: url2)
@@ -39,20 +41,23 @@ router.get("/") {
         
         // Entry内の記事写真を集める
         for img in (entry?.css("img.pict"))! {
-            imageUrls.append(img["src"]!)
+            print("\(img["src"])")
+            context["images"]?.append(["url": img["src"]!])
         }
 
         // 前の記事を見つける
         let li = entry?.css("li.prev").first
         if li == nil {
+            print("finish!!")
             break
         }
         let l = li?.css("a").first
         url2 = URL(string: (l?["href"]!)!)!
+
         sleep(3)
     }
     
-    response.send("\(imageUrls)")
+    try response.render("images.mustache", context: context).end()
     next()
 }
 
