@@ -11,9 +11,26 @@ let router = Router()
 
 router.add(templateEngine: MustacheTemplateEngine())
 
+router.get("/") { request, response, next in
+
+    var context: [String: [[String: Any]]] = ["images": []]
+
+    ImageStore().all(onComplete: { result in
+        for row in (result.asResultSet?.rows)! {
+            print("\(row)")
+            context["images"]?.append(
+                ["url": row[2]!]
+            )
+        }
+        
+    })
+
+    try response.render("images.mustache", context: context).end()
+    next()
+}
+
 // Handle HTTP GET requests to /
-router.get("/") {
-    request, response, next in
+router.get("/scrape") { request, response, next in
     
     // ブログトップページを取ってくる
     let url = URL(string: "http://lineblog.me/non_official")!
@@ -33,16 +50,15 @@ router.get("/") {
     // 最新のEntryから順番にアクセスして、「前の記事」があれば遡る、「前の記事」がなくなったら終了する
     var url2 = URL(string: latestEntryUrl)!
 
-    var context: [String: [Any] ] = [ "images": [] ]
-    
     while(true) {
         let data2 = try Data(contentsOf: url2)
         let entry = HTML(html: data2, encoding: String.Encoding.utf8)
         
         // Entry内の記事写真を集める
         for img in (entry?.css("img.pict"))! {
-            print("\(img["src"])")
-            context["images"]?.append(["url": img["src"]!])
+            ImageStore().create(blogId: 1, originalUrl: img["src"]!, onComplete: { result in
+                print("\(img["src"])")
+            })
         }
 
         // 前の記事を見つける
@@ -57,7 +73,7 @@ router.get("/") {
         sleep(3)
     }
     
-    try response.render("images.mustache", context: context).end()
+    response.send("yeah")
     next()
 }
 
