@@ -1,17 +1,9 @@
 import Foundation
 import Kitura
+import Kanna
 import HeliumLogger
-import PostgreSQL
 
 HeliumLogger.use()
-
-let host = "localhost"
-let port = Int32(5432)
-let database = "tryswift"
-let username = "radioboo"
-let password = "qwe12345"
-
-var postgreConnection: PostgreSQL.Connection!
 
 // Create a new router
 let router = Router()
@@ -19,25 +11,48 @@ let router = Router()
 // Handle HTTP GET requests to /
 router.get("/") {
     request, response, next in
-
-    let connectionString = URL(string: "postgres://\(username):\(password)@\(host):\(port)/\(database)")!
-    postgreConnection = try PostgreSQL.Connection(info: .init(connectionString))
     
-    try postgreConnection.open()
     
-    guard postgreConnection.internalStatus == PostgreSQL.Connection.InternalStatus.OK else {
-        return
+    // ブログトップページを取ってくる
+    let url = URL(string: "http://lineblog.me/non_official")!
+    let data = try Data(contentsOf: url)
+    let top = HTML(html: data, encoding: String.Encoding.utf8)
+    
+    // トップページから最初のarchiveを取ってくる
+    var archiveLinks: [String] = []
+    for archiveLink in (top?.css("h1.article-title"))! {
+        for link in (archiveLink.css("a")) {
+            archiveLinks.append(link["href"]!)
+        }
     }
     
-    let query = "SELECT * FROM blogs;"
-    let result = try postgreConnection.execute(query)
+    let latestEntryUrl = archiveLinks.first!
     
-    var url: String? = nil
-    for i in 0 ..< result.count {
-        url = try String(describing: result[i].data("url"))
-    }
+    // 最新のEntryから順番にアクセスして、「前の記事」があれば遡る、「前の記事」がなくなったら終了する
+    var url2 = URL(string: latestEntryUrl)!
 
-    response.send(url!)
+    var imageUrls: [String] = []
+    
+    while(true) {
+        let data2 = try Data(contentsOf: url2)
+        let entry = HTML(html: data2, encoding: String.Encoding.utf8)
+        
+        // Entry内の記事写真を集める
+        for img in (entry?.css("img.pict"))! {
+            imageUrls.append(img["src"]!)
+        }
+
+        // 前の記事を見つける
+        let li = entry?.css("li.prev").first
+        if li == nil {
+            break
+        }
+        let l = li?.css("a").first
+        url2 = URL(string: (l?["href"]!)!)!
+        sleep(3)
+    }
+    
+    response.send("\(imageUrls)")
     next()
 }
 
