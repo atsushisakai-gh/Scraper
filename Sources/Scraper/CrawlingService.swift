@@ -15,6 +15,9 @@ class CrawlingService {
     public func call(_ url: URL) {
         var data: Data? = nil
 
+        print("\(url)")
+        return
+        
         // get LINE Blog top page
         do {
             data = try Data(contentsOf: url)

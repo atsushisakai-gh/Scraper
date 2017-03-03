@@ -1,6 +1,6 @@
 import Foundation
 import Kitura
-import Kanna
+import Swiftkiq
 import HeliumLogger
 import KituraMustache
 
@@ -31,9 +31,12 @@ router.get("/") { request, response, next in
 
 // Handle HTTP GET requests to /
 router.get("/scrape") { request, response, next in
-    
-    CrawlingService().call(URL(string: "http://lineblog.me/non_official")!)
-    
+    let url = "http://lineblog.me/non_official"
+    do {
+        try CrawlingWorker.performAsync(CrawlingWorker.Argument(url: url), to: Swiftkiq.Queue("default"))
+    } catch {
+        print("error")
+    }
     response.send("yeah")
     next()
 }
