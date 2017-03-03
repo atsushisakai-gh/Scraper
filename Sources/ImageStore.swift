@@ -36,6 +36,7 @@ class ImageStore {
         connection.execute(query: query, onCompletion: { result in
             onComplete(result)
         })
+        connection.closeConnection()
     }
     
     func all(onComplete:@escaping (QueryResult) -> ()) {
@@ -53,6 +54,7 @@ class ImageStore {
         connection.execute(query: query, onCompletion: { result in
             onComplete(result)
         })
+        connection.closeConnection()
     }
     
 }

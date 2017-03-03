@@ -31,6 +31,7 @@ router.get("/") { request, response, next in
 
 // Handle HTTP GET requests to /
 router.get("/scrape") { request, response, next in
+    
     CrawlingService().call(URL(string: "http://lineblog.me/non_official")!)
     
     response.send("yeah")
