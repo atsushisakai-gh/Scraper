@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F3FC55A1E6904050045FCE1 /* CrawlingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FC5581E6903810045FCE1 /* CrawlingService.swift */; };
+		4F3FC55D1E69161B0045FCE1 /* CrawlingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FC55B1E6915290045FCE1 /* CrawlingWorker.swift */; };
 		OBJ_319 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Logger.swift */; };
 		OBJ_326 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Socket.swift */; };
 		OBJ_327 /* SocketProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SocketProtocols.swift */; };
@@ -703,6 +704,7 @@
 
 /* Begin PBXFileReference section */
 		4F3FC5581E6903810045FCE1 /* CrawlingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlingService.swift; sourceTree = "<group>"; };
+		4F3FC55B1E6915290045FCE1 /* CrawlingWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlingWorker.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RawBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawBodyParser.swift; sourceTree = "<group>"; };
 		OBJ_101 /* TextBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBodyParser.swift; sourceTree = "<group>"; };
 		OBJ_102 /* URLEncodedBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncodedBodyParser.swift; sourceTree = "<group>"; };
@@ -1549,6 +1551,7 @@
 			children = (
 				OBJ_285 /* BlogStore.swift */,
 				4F3FC5581E6903810045FCE1 /* CrawlingService.swift */,
+				4F3FC55B1E6915290045FCE1 /* CrawlingWorker.swift */,
 				OBJ_286 /* Database.swift */,
 				OBJ_287 /* ImageStore.swift */,
 				OBJ_288 /* main.swift */,
@@ -2631,6 +2634,7 @@
 				OBJ_761 /* Database.swift in Sources */,
 				4F3FC55A1E6904050045FCE1 /* CrawlingService.swift in Sources */,
 				OBJ_762 /* ImageStore.swift in Sources */,
+				4F3FC55D1E69161B0045FCE1 /* CrawlingWorker.swift in Sources */,
 				OBJ_763 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
