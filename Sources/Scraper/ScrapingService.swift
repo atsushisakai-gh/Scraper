@@ -24,7 +24,7 @@ class ScrapingService {
 
         let top = HTML(html: data!, encoding: String.Encoding.utf8)
 
-        for img in (top?.css("img.pict"))! {
+        for img in (top?.css("div.article-body img.pict"))! {
             ImageStore().create(blogId: 0, uuid: UUID().uuidString, originalUrl: img["src"]!)
             print("###### Image: \(img["src"])")
         }
