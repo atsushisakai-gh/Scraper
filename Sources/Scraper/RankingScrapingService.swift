@@ -27,7 +27,7 @@ class RankingScrapingService {
         let top = HTML(html: data!, encoding: String.Encoding.utf8)
         
         // get first archive urls from top page
-        let blogLinks: [String] = (top?.css("div.mdMN03UserName"))!.map {
+        let blogLinks: [String] = (top?.css("div.mdMN03Entry div.mdMN03UserName"))!.map {
             var l: String?
             for link in ($0.css("a")) {
                 l = link["href"]!
