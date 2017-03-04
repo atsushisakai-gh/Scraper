@@ -13,8 +13,7 @@ import SwiftKueryPostgreSQL
 
 class Database {
     
-    let queue = DispatchQueue(label: "net.radioboo", attributes: .concurrent)
-    
+    static let queue = DispatchQueue(label: "net.radioboo", attributes: .concurrent)
     static let blogsTable = BlogsTable()
     static let imagesTable = ImagesTable()
     

@@ -9,25 +9,25 @@
 import Foundation
 import SwiftKuery
 import SwiftKueryPostgreSQL
+import PromiseKit
 
+class BlogStore: Store {
+    
+    func create(name: String, url: String, status: Int) {
+        let table = Database.blogsTable
+        let insert = Insert(into: table, columns: [table.name, table.url, table.status], values: [name, url, status])
 
-class BlogStore {
-
-    func find(id: Int, onComplete:@escaping (QueryResult) -> ()) {
         let connection = Database.connection()
-        connection.connect { error in
-            if let e = error {
-                print("\(e)")
-                return
-            }
+        let queue = Database.queue
+
+        firstly {
+            connection.connect()
         }
-        
-        let blogsTable = BlogsTable()
-        let query = Select(from: blogsTable)
-
-        connection.execute(query: query, onCompletion: { result in
-            onComplete(result)
-        })
+        .then(on: queue) { result -> Promise<QueryResult> in
+            insert.execute(connection)
+        }
+        .always(on: queue) {
+            connection.closeConnection()
+        }
     }
-
 }

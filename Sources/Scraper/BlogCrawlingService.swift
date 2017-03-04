@@ -26,6 +26,8 @@ class BlogCrawlingService {
 
         let top = HTML(html: data!, encoding: String.Encoding.utf8)
 
+        BlogStore().create(name: (top?.title)!, url: url.absoluteString, status: Blog.Status.wait.rawValue)
+
         // get first archive urls from top page
         let archiveLinks: [String] = (top?.css("h1.article-title"))!.map {
             var l: String? = nil
