@@ -9,13 +9,6 @@
 import Foundation
 import SwiftKuery
 
-class Images : Table {
-    let tableName = "images"
-    let id = Column("id")
-    let blogId = Column("blog_id")
-    let originalUrl = Column("original_url")
-}
-
 class ImageStore {
     
     func create(blogId: Int, originalUrl: String, onComplete:@escaping (QueryResult) -> ()) {
@@ -27,10 +20,10 @@ class ImageStore {
             }
         }
         
-        let images = Images()
+        let imagesTable = ImagesTable()
         let query = Insert(
-            into: images,
-            columns: [images.blogId, images.originalUrl],
+            into: imagesTable,
+            columns: [imagesTable.blogId, imagesTable.originalUrl],
             values: [blogId, originalUrl])
         
         connection.execute(query: query, onCompletion: { result in
@@ -48,8 +41,8 @@ class ImageStore {
             }
         }
         
-        let images = Images()
-        let query = Select(from: images)
+        let imagesTable = ImagesTable()
+        let query = Select(from: imagesTable)
         
         connection.execute(query: query, onCompletion: { result in
             onComplete(result)

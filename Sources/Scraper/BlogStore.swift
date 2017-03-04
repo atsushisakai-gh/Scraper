@@ -10,12 +10,6 @@ import Foundation
 import SwiftKuery
 import SwiftKueryPostgreSQL
 
-class Blogs : Table {
-    let tableName = "blogs"
-    let id = Column("id")
-    let name = Column("name")
-    let url = Column("url")
-}
 
 class BlogStore {
 
@@ -28,8 +22,8 @@ class BlogStore {
             }
         }
         
-        let blogs = Blogs()
-        let query = Select(from: blogs)
+        let blogsTable = BlogsTable()
+        let query = Select(from: blogsTable)
 
         connection.execute(query: query, onCompletion: { result in
             onComplete(result)

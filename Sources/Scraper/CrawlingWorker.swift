@@ -9,12 +9,16 @@
 import Foundation
 import Swiftkiq
 
-class CrawlingWorker: WorkerType {
-    struct Argument : ArgumentType {
+class CrawlingWorker: Worker {
+    struct Args : Argument {
         let url: String
+        
+        public func toDictionary() -> [String : Any] {
+            return ["url": url]
+        }
 
-        static func from(_ dictionary: Dictionary<String, Any>) -> Argument {
-            return Argument(
+        static func from(_ dictionary: Dictionary<String, Any>) -> Args {
+            return Args(
                 url: dictionary["url"]! as! String
             )
         }
@@ -26,7 +30,7 @@ class CrawlingWorker: WorkerType {
     
     required init() {}
 
-    public func perform(_ argument: CrawlingWorker.Argument) throws {
+    public func perform(_ argument: CrawlingWorker.Args) throws {
         CrawlingService().call(URL(string: argument.url)!)
     }
 }

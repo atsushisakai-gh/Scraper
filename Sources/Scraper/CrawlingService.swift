@@ -15,9 +15,6 @@ class CrawlingService {
     public func call(_ url: URL) {
         var data: Data? = nil
 
-        print("\(url)")
-        return
-        
         // get LINE Blog top page
         do {
             data = try Data(contentsOf: url)
@@ -53,9 +50,9 @@ class CrawlingService {
 
             // to ScrapingWorker
             for img in (entry?.css("img.pict"))! {
-                ImageStore().create(blogId: 1, originalUrl: img["src"]!, onComplete: { result in
+//                ImageStore().create(blogId: 1, originalUrl: img["src"]!, onComplete: { result in
                     print("###### Image: \(img["src"])")
-                })
+//                })
             }
             
             // scrape next archive url
@@ -69,7 +66,7 @@ class CrawlingService {
             // next archive url
             archiveUrl = URL(string: (l?["href"]!)!)!
             
-            sleep(3)
+            usleep(500)
         }
 
     }

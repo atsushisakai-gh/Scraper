@@ -33,11 +33,11 @@ router.get("/") { request, response, next in
 router.get("/scrape") { request, response, next in
     let url = "http://lineblog.me/non_official"
     do {
-        try CrawlingWorker.performAsync(CrawlingWorker.Argument(url: url), to: Swiftkiq.Queue("default"))
+        try CrawlingWorker.performAsync(CrawlingWorker.Args(url: url), to: Swiftkiq.Queue("default"))
     } catch {
         print("error")
     }
-    response.send("yeah")
+    response.send("\(url)をクロールするぞ!!!")
     next()
 }
 
