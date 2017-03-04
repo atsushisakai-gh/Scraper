@@ -9,7 +9,7 @@
 import Foundation
 import Swiftkiq
 
-class CrawlingWorker: Worker {
+class BlogCrawlingWorker: Worker {
     struct Args : Argument {
         let url: String
         
@@ -30,7 +30,7 @@ class CrawlingWorker: Worker {
     
     required init() {}
 
-    public func perform(_ argument: CrawlingWorker.Args) throws {
-        CrawlingService().call(URL(string: argument.url)!)
+    public func perform(_ argument: BlogCrawlingWorker.Args) throws {
+        BlogCrawlingService().call(URL(string: argument.url)!)
     }
 }

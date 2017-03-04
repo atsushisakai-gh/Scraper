@@ -15,17 +15,11 @@ router.get("/") { request, response, next in
 
     var context: [String: [[String: Any]]] = ["images": []]
 
-    ImageStore().all(onComplete: { result in
-        for row in (result.asResultSet?.rows)! {
-            print("\(row)")
-            context["images"]?.append(
-                ["url": row[2]!]
-            )
-        }
-        
-    })
+    RankingScrapingService().call("http://www.lineblog.me/ranking/")
+    
+    response.send("start crawling ranlking")
 
-    try response.render("images.mustache", context: context).end()
+    //    try response.render("images.mustache", context: context).end()
     next()
 }
 
@@ -33,7 +27,7 @@ router.get("/") { request, response, next in
 router.get("/scrape") { request, response, next in
     let url = "http://lineblog.me/non_official"
     do {
-        try CrawlingWorker.performAsync(CrawlingWorker.Args(url: url), to: Swiftkiq.Queue("default"))
+        try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: url), to: Swiftkiq.Queue("default"))
     } catch {
         print("error")
     }

@@ -5,7 +5,7 @@ class SKRouter: Routable {
     func dispatch(_ work: UnitOfWork) throws {
         switch work.workerClass {
         case "CrawlingWorker":
-            try invokeWorker(workerClass: CrawlingWorker.self, work: work)
+            try invokeWorker(workerClass: BlogCrawlingWorker.self, work: work)
         default:
             break
         }

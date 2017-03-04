@@ -9,8 +9,9 @@
 import Foundation
 import HeliumLogger
 import Kanna
+import Swiftkiq
 
-class CrawlingService {
+class BlogCrawlingService {
 
     public func call(_ url: URL) {
         var data: Data? = nil
@@ -48,13 +49,6 @@ class CrawlingService {
 
             let entry = HTML(html: entryData!, encoding: String.Encoding.utf8)
 
-            // to ScrapingWorker
-            for img in (entry?.css("img.pict"))! {
-//                ImageStore().create(blogId: 1, originalUrl: img["src"]!, onComplete: { result in
-                    print("###### Image: \(img["src"])")
-//                })
-            }
-            
             // scrape next archive url
             let li = entry?.css("li.prev").first
             if li == nil {
@@ -63,10 +57,13 @@ class CrawlingService {
             }
             let l = li?.css("a").first
             
+            // Job
+            try! ScrapingWorker.performAsync(ScrapingWorker.Args(url: (l?["href"]!)!))
+
             // next archive url
             archiveUrl = URL(string: (l?["href"]!)!)!
             
-            usleep(500)
+            usleep(300)
         }
 
     }
