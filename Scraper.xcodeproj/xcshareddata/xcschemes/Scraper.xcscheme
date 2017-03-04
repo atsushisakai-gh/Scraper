@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_340"
+               BlueprintIdentifier = "OBJ_334"
                BuildableName = "LoggerAPI.framework"
                BlueprintName = "LoggerAPI"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_347"
+               BlueprintIdentifier = "OBJ_341"
                BuildableName = "Socket.framework"
                BlueprintName = "Socket"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_356"
+               BlueprintIdentifier = "OBJ_350"
                BuildableName = "SSLService.framework"
                BlueprintName = "SSLService"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_365"
+               BlueprintIdentifier = "OBJ_359"
                BuildableName = "CHTTPParser.framework"
                BlueprintName = "CHTTPParser"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_380"
+               BlueprintIdentifier = "OBJ_374"
                BuildableName = "KituraNet.framework"
                BlueprintName = "KituraNet"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_428"
+               BlueprintIdentifier = "OBJ_422"
                BuildableName = "SwiftyJSON.framework"
                BlueprintName = "SwiftyJSON"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_436"
+               BlueprintIdentifier = "OBJ_430"
                BuildableName = "KituraTemplateEngine.framework"
                BlueprintName = "KituraTemplateEngine"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_443"
+               BlueprintIdentifier = "OBJ_437"
                BuildableName = "Kitura.framework"
                BlueprintName = "Kitura"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -126,7 +126,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_505"
+               BlueprintIdentifier = "OBJ_499"
                BuildableName = "HeliumLogger.framework"
                BlueprintName = "HeliumLogger"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -140,7 +140,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_515"
+               BlueprintIdentifier = "OBJ_509"
                BuildableName = "Bridging.framework"
                BlueprintName = "Bridging"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -154,7 +154,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_525"
+               BlueprintIdentifier = "OBJ_519"
                BuildableName = "Mustache.framework"
                BlueprintName = "Mustache"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -168,7 +168,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_567"
+               BlueprintIdentifier = "OBJ_561"
                BuildableName = "KituraMustache.framework"
                BlueprintName = "KituraMustache"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -182,7 +182,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_582"
+               BlueprintIdentifier = "OBJ_576"
                BuildableName = "SwiftKuery.framework"
                BlueprintName = "SwiftKuery"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -196,7 +196,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_627"
+               BlueprintIdentifier = "OBJ_621"
                BuildableName = "SwiftKueryPostgreSQL.framework"
                BlueprintName = "SwiftKueryPostgreSQL"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -210,7 +210,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_639"
+               BlueprintIdentifier = "OBJ_633"
                BuildableName = "PromiseKit.framework"
                BlueprintName = "PromiseKit"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -224,7 +224,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_657"
+               BlueprintIdentifier = "OBJ_651"
                BuildableName = "Kanna.framework"
                BlueprintName = "Kanna"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -238,7 +238,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_668"
+               BlueprintIdentifier = "OBJ_662"
                BuildableName = "Socks.framework"
                BlueprintName = "Socks"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -252,7 +252,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_681"
+               BlueprintIdentifier = "OBJ_675"
                BuildableName = "SocksCore.framework"
                BlueprintName = "SocksCore"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -266,7 +266,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_702"
+               BlueprintIdentifier = "OBJ_696"
                BuildableName = "Redbird.framework"
                BlueprintName = "Redbird"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -280,7 +280,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_727"
+               BlueprintIdentifier = "OBJ_721"
                BuildableName = "Jay.framework"
                BlueprintName = "Jay"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -294,7 +294,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_754"
+               BlueprintIdentifier = "OBJ_748"
                BuildableName = "Daemon.framework"
                BlueprintName = "Daemon"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -308,7 +308,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_761"
+               BlueprintIdentifier = "OBJ_755"
                BuildableName = "Swiftkiq.framework"
                BlueprintName = "Swiftkiq"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -322,21 +322,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_788"
-               BuildableName = "swiftkiqctl"
-               BlueprintName = "swiftkiqctl"
-               ReferencedContainer = "container:Scraper.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_810"
+               BlueprintIdentifier = "OBJ_782"
                BuildableName = "Scraper"
                BlueprintName = "Scraper"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -350,7 +336,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_869"
+               BlueprintIdentifier = "OBJ_841"
                BuildableName = "swiftkiq-service"
                BlueprintName = "swiftkiq-service"
                ReferencedContainer = "container:Scraper.xcodeproj">
@@ -381,7 +367,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_340"
+            BlueprintIdentifier = "OBJ_334"
             BuildableName = "LoggerAPI.framework"
             BlueprintName = "LoggerAPI"
             ReferencedContainer = "container:Scraper.xcodeproj">

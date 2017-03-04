@@ -28,7 +28,6 @@ let router = SKRouter()
 let options = LaunchOptions(
     concurrency: 25,
     queues: [Queue(rawValue: "default")],
-    strategy: nil,
     router: router,
     daemonize: false
 )
