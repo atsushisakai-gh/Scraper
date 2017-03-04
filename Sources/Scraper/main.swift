@@ -21,10 +21,26 @@ router.get("/") { request, response, next in
     next()
 }
 
-router.get("/images") { request, response, next in
-    var context: [String: [[String: Any]]] = ["images": []]
+router.get("/blogs") { request, response, next in
+    var context: [String: [[String: Any]]] = ["blogs": []]
     
-    ImageStore().select(by: 0, onComplete: { images in
+    BlogStore().all(onComplete: { blogs in
+        blogs.forEach { blog in
+            if let name = blog.name {
+                context["blogs"]?.append(["name": name, "id": blog.id, "url": blog.url])
+            }
+        }
+    })
+    
+    try response.render("blogs.mustache", context: context).end()
+    next()
+}
+
+router.get("/blogs/:id/images") { request, response, next in
+    var context: [String: [[String: Any]]] = ["images": []]
+    guard let id = request.parameters["id"] else { fatalError() }
+    
+    ImageStore().select(by: Int(id)!, onComplete: { images in
         images.forEach { image in
             context["images"]?.append(["url": image.originalUrl])
         }

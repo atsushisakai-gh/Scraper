@@ -30,6 +30,28 @@ class BlogStore: Store {
             connection.closeConnection()
         }
     }
+    
+    func all(onComplete: (@escaping ([Blog])->Void)) {
+        let table = Database.blogsTable
+        
+        let connection = Database.connection()
+
+        connection.connect() { error in
+            if let _ = error {
+                fatalError()
+            }
+        }
+
+        let select = Select(from: table)
+        
+        connection.execute(query: select) { result in
+            let resultSet = result.asResultSet
+            let fields = self.resultToRows(resultSet: resultSet!)
+            onComplete(fields.flatMap(Blog.init(fields:)))
+        }
+
+        connection.closeConnection()
+    }
 
     func select(by url: String, onComplete: (@escaping ([Blog])->Void)) {
         let table = Database.blogsTable
@@ -49,5 +71,7 @@ class BlogStore: Store {
             let fields = self.resultToRows(resultSet: resultSet!)
             onComplete(fields.flatMap(Blog.init(fields:)))
         }
+        
+        connection.closeConnection()
     }
 }

@@ -68,7 +68,11 @@ class BlogCrawlingService {
             guard let targetUrl = l?["href"] else { break }
             let args = ScrapingWorker.Args(blogId: blogId!, url: targetUrl)
             print("Add ScrapingWorker: \(targetUrl)")
-            try? ScrapingWorker.performAsync(args, to: Swiftkiq.Queue("scraping"))
+            do {
+                try? ScrapingWorker.performAsync(args, to: Swiftkiq.Queue("scraping"))
+            } catch {
+                continue
+            }
 
             // next archive url
             archiveUrl = URL(string: (l?["href"]!)!)!

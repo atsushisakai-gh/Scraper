@@ -48,6 +48,7 @@ class ImageStore: Store {
             let fields = self.resultToRows(resultSet: resultSet!)
             onComplete(fields.flatMap(Image.init(fields:)))
         }
+        connection.closeConnection()
     }
 
 }
