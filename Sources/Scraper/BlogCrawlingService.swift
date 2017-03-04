@@ -58,7 +58,9 @@ class BlogCrawlingService {
             let l = li?.css("a").first
             
             // Job
-            try! ScrapingWorker.performAsync(ScrapingWorker.Args(url: (l?["href"]!)!))
+            print(l?["href"]!)
+            let args = ScrapingWorker.Args(url: (l?["href"]!)!)
+            try! ScrapingWorker.performAsync(args, to: Swiftkiq.Queue("scraping"))
 
             // next archive url
             archiveUrl = URL(string: (l?["href"]!)!)!

@@ -4,8 +4,10 @@ import Swiftkiq
 class SKRouter: Routable {
     func dispatch(_ work: UnitOfWork) throws {
         switch work.workerClass {
-        case "CrawlingWorker":
+        case "BlogCrawlingWorker":
             try invokeWorker(workerClass: BlogCrawlingWorker.self, work: work)
+        case "ScrapingWorker":
+            try invokeWorker(workerClass: ScrapingWorker.self, work: work)
         default:
             break
         }
@@ -27,7 +29,7 @@ class SKRouter: Routable {
 let router = SKRouter()
 let options = LaunchOptions(
     concurrency: 25,
-    queues: [Queue(rawValue: "default")],
+    queues: [Queue(rawValue: "default"), Queue(rawValue: "crawling"), Queue(rawValue: "scraping")],
     router: router,
     daemonize: false
 )

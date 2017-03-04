@@ -40,7 +40,7 @@ class RankingScrapingService {
         blogLinks.forEach { url in
             print("Start Scrape \(url)")
             do {
-                try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: url), to: Swiftkiq.Queue("default"))
+                try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: url), to: Swiftkiq.Queue("crawling"))
             } catch {
                 print("error")
             }
