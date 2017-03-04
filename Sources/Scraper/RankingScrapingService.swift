@@ -37,14 +37,20 @@ class RankingScrapingService {
 
         // FIXME: なぜか板野までしか取れないのであとで直す
 
-        blogLinks.forEach { url in
-            print("Start Scrape \(url)")
-            do {
-                try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: url), to: Swiftkiq.Queue("crawling"))
-            } catch {
-                print("error")
-            }
+        do {
+            try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: "http://lineblog.me/non_official"), to: Swiftkiq.Queue("crawling"))
+        } catch {
+            print("error")
         }
+
+//        blogLinks.forEach { url in
+//            print("Start Scrape \(url)")
+//            do {
+//                try BlogCrawlingWorker.performAsync(BlogCrawlingWorker.Args(url: url), to: Swiftkiq.Queue("crawling"))
+//            } catch {
+//                print("error")
+//            }
+//        }
 
     }
 }

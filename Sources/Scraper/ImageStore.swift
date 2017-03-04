@@ -8,46 +8,46 @@
 
 import Foundation
 import SwiftKuery
+import PromiseKit
 
-class ImageStore {
-    
-    func create(blogId: Int, originalUrl: String, onComplete:@escaping (QueryResult) -> ()) {
+class ImageStore: Store {
+
+    func create(blogId: Int, uuid: String, originalUrl: String) {
+        let table = Database.imagesTable
+        let insert = Insert(into: table, columns: [table.blogId, table.uuid, table.originalUrl], values: [blogId, uuid, originalUrl])
+        
         let connection = Database.connection()
-        connection.connect { error in
-            if let e = error {
-                print("\(e)")
-                return
+        let queue = Database.queue
+        
+        firstly {
+            connection.connect()
             }
+            .then(on: queue) { result -> Promise<QueryResult> in
+                insert.execute(connection)
+            }
+            .always(on: queue) {
+                connection.closeConnection()
         }
-        
-        let imagesTable = ImagesTable()
-        let query = Insert(
-            into: imagesTable,
-            columns: [imagesTable.blogId, imagesTable.originalUrl],
-            values: [blogId, originalUrl])
-        
-        connection.execute(query: query, onCompletion: { result in
-            onComplete(result)
-        })
-        connection.closeConnection()
     }
     
-    func all(onComplete:@escaping (QueryResult) -> ()) {
+    func select(by blogId: Int, onComplete: (@escaping ([Image])->Void)) {
+        let table = Database.imagesTable
+        
         let connection = Database.connection()
-        connection.connect { error in
-            if let e = error {
-                print("\(e)")
-                return
+
+        connection.connect() { error in
+            if let _ = error {
+                fatalError()
             }
         }
-        
-        let imagesTable = ImagesTable()
-        let query = Select(from: imagesTable)
-        
-        connection.execute(query: query, onCompletion: { result in
-            onComplete(result)
-        })
-        connection.closeConnection()
+
+        let select = Select(from: table).where ( table.blogId == blogId )
+
+        connection.execute(query: select) { result in
+            let resultSet = result.asResultSet
+            let fields = self.resultToRows(resultSet: resultSet!)
+            onComplete(fields.flatMap(Image.init(fields:)))
+        }
     }
-    
+
 }

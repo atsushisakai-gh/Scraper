@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+struct Image {
+    let id: Int
+    let blogId: Int
+    let uuid: String
+    let originalUrl: String
+}
+
+extension Image: FieldMappable {
+    
+    init?(fields: Fields) {
+        id = Int(fields["id"] as! String)!
+        blogId = Int(fields["blog_id"] as! String)!
+        uuid = fields["uuid"] as! String
+        originalUrl = fields["original_url"] as! String
+    }
+
+}
