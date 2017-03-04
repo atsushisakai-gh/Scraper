@@ -28,6 +28,11 @@ class BlogCrawlingService {
 
         BlogStore().create(name: (top?.title)!, url: url.absoluteString, status: Blog.Status.wait.rawValue)
 
+        var blogId: Int?
+        BlogStore().select(by: url.absoluteString) { (blogs: [Blog]) in
+            blogId = blogs.first?.id
+        }
+
         // get first archive urls from top page
         let archiveLinks: [String] = (top?.css("h1.article-title"))!.map {
             var l: String? = nil
@@ -60,14 +65,15 @@ class BlogCrawlingService {
             let l = li?.css("a").first
             
             // Job
-            print(l?["href"]!)
-            let args = ScrapingWorker.Args(url: (l?["href"]!)!)
-            try! ScrapingWorker.performAsync(args, to: Swiftkiq.Queue("scraping"))
+            guard let targetUrl = l?["href"] else { break }
+            let args = ScrapingWorker.Args(blogId: blogId!, url: targetUrl)
+            print("Add ScrapingWorker: \(targetUrl)")
+            try? ScrapingWorker.performAsync(args, to: Swiftkiq.Queue("scraping"))
 
             // next archive url
             archiveUrl = URL(string: (l?["href"]!)!)!
             
-            usleep(300)
+            usleep(150)
         }
 
     }

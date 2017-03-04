@@ -28,7 +28,7 @@ class SKRouter: Routable {
 }
 let router = SKRouter()
 let options = LaunchOptions(
-    concurrency: 25,
+    concurrency: 1,
     queues: [Queue(rawValue: "default"), Queue(rawValue: "crawling"), Queue(rawValue: "scraping")],
     router: router,
     daemonize: false

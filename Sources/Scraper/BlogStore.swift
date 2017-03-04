@@ -30,4 +30,24 @@ class BlogStore: Store {
             connection.closeConnection()
         }
     }
+
+    func select(by url: String, onComplete: (@escaping ([Blog])->Void)) {
+        let table = Database.blogsTable
+        
+        let connection = Database.connection()
+        
+        connection.connect() { error in
+            if let _ = error {
+                fatalError()
+            }
+        }
+        
+        let select = Select(from: table).where ( table.url == url )
+        
+        connection.execute(query: select) { result in
+            let resultSet = result.asResultSet
+            let fields = self.resultToRows(resultSet: resultSet!)
+            onComplete(fields.flatMap(Blog.init(fields:)))
+        }
+    }
 }

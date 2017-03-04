@@ -12,14 +12,19 @@ import Swiftkiq
 class ScrapingWorker: Worker {
 
     struct Args : Argument {
+        let blogId: Int
         let url: String
-        
+
         public func toDictionary() -> [String : Any] {
-            return ["url": url]
+            return [
+                "url": url,
+                "blogId": blogId,
+            ]
         }
         
         static func from(_ dictionary: Dictionary<String, Any>) -> Args {
             return Args(
+                blogId: dictionary["blogId"]! as! Int,
                 url: dictionary["url"]! as! String
             )
         }
@@ -32,7 +37,7 @@ class ScrapingWorker: Worker {
     required init() {}
     
     public func perform(_ argument: ScrapingWorker.Args) throws {
-        ScrapingService().call(URL(string: argument.url)!)
+        ScrapingService().call(URL(string: argument.url)!, blogId: argument.blogId)
     }
 
 }
