@@ -10,6 +10,8 @@ import Foundation
 import Swiftkiq
 
 class BlogCrawlingWorker: Worker {
+    public var processorId: Int?
+
     struct Args : Argument {
         let url: String
         

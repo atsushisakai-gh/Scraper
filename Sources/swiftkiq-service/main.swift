@@ -2,20 +2,21 @@ import Foundation
 import Swiftkiq
 
 class SKRouter: Routable {
-    func dispatch(_ work: UnitOfWork) throws {
+    func dispatch(processorId: Int, work: UnitOfWork) throws {
         switch work.workerClass {
         case "BlogCrawlingWorker":
-            try invokeWorker(workerClass: BlogCrawlingWorker.self, work: work)
+            try invokeWorker(processorId: processorId, workerClass: BlogCrawlingWorker.self, work: work)
         case "ScrapingWorker":
-            try invokeWorker(workerClass: ScrapingWorker.self, work: work)
+            try invokeWorker(processorId: processorId, workerClass: ScrapingWorker.self, work: work)
         default:
             break
         }
     }
     
-    func invokeWorker<W: Worker>(workerClass: W.Type, work: UnitOfWork) throws {
+    func invokeWorker<W: Worker>(processorId: Int, workerClass: W.Type, work: UnitOfWork) throws {
         let worker = workerClass.init()
         let argument = workerClass.Args.from(work.args)
+        worker.processorId = processorId
         worker.jid = work.jid
         worker.retry = work.retry
         worker.queue = work.queue

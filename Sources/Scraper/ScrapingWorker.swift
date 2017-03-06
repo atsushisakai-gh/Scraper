@@ -10,6 +10,8 @@ import Foundation
 import Swiftkiq
 
 class ScrapingWorker: Worker {
+    public var processorId: Int?
+
 
     struct Args : Argument {
         let blogId: Int

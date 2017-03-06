@@ -67,8 +67,8 @@ class BlogStore: Store {
         let select = Select(from: table).where ( table.url == url )
         
         connection.execute(query: select) { result in
-            let resultSet = result.asResultSet
-            let fields = self.resultToRows(resultSet: resultSet!)
+            guard let resultSet = result.asResultSet else { return }
+            let fields = self.resultToRows(resultSet: resultSet)
             onComplete(fields.flatMap(Blog.init(fields:)))
         }
         
